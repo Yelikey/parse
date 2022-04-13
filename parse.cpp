@@ -96,6 +96,11 @@ int hexToDec(string str)
     {
         sum1 = str[0] - 'A' + 10;
     }
+    else if (str[0] >= 'a' && str[0] <= 'f')
+    {
+        sum1 = str[0] - 'a' + 10;
+    }
+    
 
     if (str[1] >= '0' && str[1] <= '9')
     {
@@ -104,6 +109,10 @@ int hexToDec(string str)
     else if (str[1] >= 'A' && str[1] <= 'F')
     {
         sum2 = str[1] - 'A' + 10;
+    }
+    else if (str[1] >= 'a' && str[1] <= 'f')
+    {
+        sum2 = str[1] - 'a' + 10;
     }
 
     return sum1 * 16 + sum2;
@@ -258,7 +267,7 @@ void dataCenter(int iop, string msg, int flag, int prm)
         }
         else
         {
-            cout << "结果: " << msg << endl;
+            cout << "结果: " << msg.substr(flag, 3) << endl;
         }
 
         break;
