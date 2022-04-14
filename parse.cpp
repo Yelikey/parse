@@ -357,12 +357,13 @@ void dataCenter(int iop, string msg, int flag, int prm)
             handle = msg.substr(flag, 12);
             cout << "数据库句柄: " << handle << endl;
             flag += 12;
+            cout << flag << endl;
             if (msg[flag + 1] == '1')
             {
-                str_tmp = msg.substr(flag, 3);
+                flag += 3;
                 cout << "附加校验长度: ";
-                msgLen = bufferLenParse(str_tmp, flag);
-                msgLenLen = msgLenParse(str_tmp, flag);
+                msgLen = bufferLenParse(msg, flag);
+                msgLenLen = msgLenParse(msg, flag);
 
                 str_tmp = msg.substr(flag + msgLenLen, msgLen);
                 cout << "附加校验: " << str_tmp << endl;
@@ -445,8 +446,8 @@ void dataCenter(int iop, string msg, int flag, int prm)
             }
 
             cout << "附加校验长度: ";
-            msgLen = bufferLenParse(str_tmp, flag);
-            msgLenLen = msgLenParse(str_tmp, flag);
+            msgLen = bufferLenParse(msg, flag);
+            msgLenLen = msgLenParse(msg, flag);
 
             str_tmp = msg.substr(flag + msgLenLen, msgLen);
             cout << "附加校验: " << str_tmp << endl;
@@ -489,8 +490,8 @@ void dataCenter(int iop, string msg, int flag, int prm)
             flag += 6;
 
             cout << "附加校验长度: ";
-            msgLen = bufferLenParse(str_tmp, flag);
-            msgLenLen = msgLenParse(str_tmp, flag);
+            msgLen = bufferLenParse(msg, flag);
+            msgLenLen = msgLenParse(msg, flag);
             str_tmp = msg.substr(flag + msgLenLen, msgLen);
             cout << "附加校验: " << str_tmp << endl;
             flag = flag + msgLenLen + msgLen;
