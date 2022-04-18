@@ -357,7 +357,6 @@ void dataCenter(int iop, string msg, int flag, int prm)
             handle = msg.substr(flag, 12);
             cout << "数据库句柄: " << handle << endl;
             flag += 12;
-            cout << flag << endl;
             if (msg[flag + 1] == '1')
             {
                 flag += 3;
