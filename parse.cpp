@@ -416,7 +416,7 @@ void dataCenter(int iop, string msg, int flag, int prm)
             infoId = msg.substr(flag, 6);
             cout << "信息点号: " << infoId << endl;
 
-            cout << "数据类标识: ";
+            cout << "数据类标识: " << msg.substr(flag+6, 6);
             dataType(&msg, flag + 6);
             flag += 12;
 
@@ -447,9 +447,17 @@ void dataCenter(int iop, string msg, int flag, int prm)
             cout << "附加校验长度: ";
             msgLen = bufferLenParse(msg, flag);
             msgLenLen = msgLenParse(msg, flag);
-
-            str_tmp = msg.substr(flag + msgLenLen, msgLen);
-            cout << "附加校验: " << str_tmp << endl;
+            //字符串末尾为空无法直接输出str “12 34” “12 34 ”
+            if ( msgLen > 0)
+            {
+                str_tmp = msg.substr(flag + msgLenLen, msgLen);
+                cout << "附加校验: " << str_tmp << endl;
+            }
+            else
+            {
+                cout << "无附加校验\n";
+            }
+            
         }
         else
         {
@@ -481,7 +489,7 @@ void dataCenter(int iop, string msg, int flag, int prm)
             else
             {
                 cout << "按存储序号筛选: ";
-                cout << "采集存储时标: " << msg.substr(flag + 3, 12) << endl;
+                cout << "采集存储序号: " << msg.substr(flag + 3, 12) << endl;
             }
             flag += 15;
 
