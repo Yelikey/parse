@@ -219,9 +219,20 @@ void dataCenter(int iop, string msg, int flag, int prm)
             deviceId = msg.substr(flag + 3, 3);
             cout << "逻辑设备号: " << deviceId << endl;
 
-            dataType(&msg, flag + 6);
-            dataTypeId = msg.substr(flag + 6, 6);
-            cout << dataTypeId << endl;
+            str_tmp = msg.substr(flag + 6, 3);
+            dataCount = hexToDec(str_tmp);
+            if ( dataCount == 1 )
+            {
+                dataType(&msg, flag + 9);
+                dataTypeId = msg.substr(flag + 9, 6);
+                cout << dataTypeId << endl;
+            }
+            else
+            {
+                cout << "全部初始化" << endl;
+            }
+            
+            
         }
         else
         {
